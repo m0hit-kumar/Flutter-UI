@@ -14,6 +14,12 @@ const clickedColor = Color(0xFF0C3329);
 const unclickedColor = Color(0xFF196F3D);
 Color probtn = Color(0xFF0C3329);
 Color leadbtn = Color(0xFF196F3D);
+Color gold = Color(0xFFD0B13E);
+Color silver = Color(0xFFE7E7E7);
+Color bronze = Color(0xFFA45735);
+
+//Color list_item = Colors.grey[200];
+bool userRank = false;
 
 class MyApp extends StatefulWidget {
   @override
@@ -21,241 +27,362 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool profileInfo = true;
-  bool leaderBoard = false;
+  List<String> names = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4"
+  ];
+  List<String> litems = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4",
+    "1",
+    "2",
+    "3",
+    "4"
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final profileHeight = MediaQuery.of(context).size.height * 0.45;
+//    final profileHeight = MediaQuery.of(context).size.height * 0.25;
+
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            appBar: PreferredSize(
-              preferredSize: Size(200.0, profileHeight),
-              child: AppBar(leading:
-              Icon(Icons.arrow_back) ,
-                flexibleSpace:Column(children: [
-                  SizedBox(
-                    height: 50,
-                  ),
-
-Text("Sundhar Pichai",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22,color: Colors.grey[200]),),
-
-                  SizedBox(
-                    height: 50,
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(60,0.0 , 60.0, 0.0),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text("2",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.grey[200]),),
-                              Text(" Postion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.grey[200]),),
-                            ],
-                          ),
-                          SizedBox(width: 20,),
-                          Center(
-                            child: CircleAvatar(
-                              backgroundColor: avtar_backGround.withOpacity(0.1),
-                              radius: 80,
-                              child: CircleAvatar(
-                                backgroundColor: CupertinoColors.activeBlue,
-                                radius: 65,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20,),
-
-                          Column(
-                            children: [
-                              Text("7",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.grey[200]),),
-                              Text("Streak",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.grey[200]),),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-
-                ],),
-
-
-                shape:RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(0.0),
-                    topLeft: Radius.circular(0.0),
-                    bottomRight: Radius.circular(0.0),
-                    bottomLeft: Radius.circular(90.0),
-                  ),
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        toolbarHeight: 200,
+        // backgroundColor:unclickedColor,
+        shadowColor: Colors.black,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+                  avtar_backGround1.withOpacity(0.8),
+                  probtn,
+                  unclickedColor
+                ]),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 40, 0.0, 0.0),
+            child: Column(
+              children: [
+                Text(
+                  "LEADERBOARD",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.grey[200],
+                      fontWeight: FontWeight.bold),
                 ),
-                backgroundColor: prof_Card,
-                elevation: 0,
-                bottom: PreferredSize(preferredSize: Size(200.0,200.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(25.0),
-                    child: TabBar(
-                        unselectedLabelColor: Colors.grey[200],
-                        indicatorSize: TabBarIndicatorSize.label,
-
-                        indicator: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: avtar_backGround1),
-                        tabs: [
-                          Tab(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text("Profile"),
-                              ),
-                            ),
-                          ),
-                          Tab(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text("Leaderboard"),
-                              ),
-                            ),
-                          ),
-                        ]),
+                SizedBox(
+                  height: 20,
+                ),
+                Icon(
+                  Icons.emoji_events_rounded,
+                  color: gold,
+                  size: 70,
+                ),
+              ],
+            ),
+          ),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(4.0),
+          child: Container(
+            color: avtar_backGround1,
+            height: 50,
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("Postion",
+                      style: TextStyle(
+                          color: Colors.grey[200],
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                    "Profile",
+                    style:
+                    TextStyle(
+                        color: Colors.grey[200],
+                        fontWeight: FontWeight.bold),
                   ),
+                  Text(
+                    "Name",
+                    style:
+                    TextStyle(
+                        color: Colors.grey[200],
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Score",
+                    style: TextStyle(
+                        color: Colors.grey[200],
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          color: cool,
+          child: Card(
+            margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+            elevation: 0,
+            color: Colors.red,
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("pos",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold)),
+                  CircleAvatar(
+                    foregroundColor: Colors.green,
+                  ),
+                  Text(
+                    "name",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Score",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width - 10,
+                child: ListView.builder(
+                  itemBuilder: (BuildContext txt, int index) =>
+                      buildList(txt, index),
+                  itemCount: litems.length,
                 ),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
 
+  Widget buildList(BuildContext txt, int index) {
+    int ind = index + 1;
+    final pos = litems[index];
+    final name = names[index];
 
+    Widget listItem;
 
-            body: TabBarView(children: [
-              Container(height:profileHeight,child: ListView(
-                children: [
-                  ListTile(
-                    leading: Icon(Icons.alternate_email),
-                    title: Text('Username'),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.account_circle),
-                    title: Text(
-                      'Name',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.email),
-                    title: Text('Email-Id'),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.phone),
-                    title: Text('Phone'),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.keyboard_return),
-                    title: Text('Logout'),
-                  ),
-                ],
-              ),),
-              Container(height:profileHeight,child: ListView(
-                children: [
-                  ListTile(
-                    leading: Icon(Icons.alternate_email),
-                    title: Text('Username'),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.account_circle),
-                    title: Text(
-                      'Name',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.email),
-                    title: Text('Email-Id'),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.phone),
-                    title: Text('Phone'),
-                  ),
-                  SizedBox(
-                    height: 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.keyboard_return),
-                    title: Text('Logout'),
-                  ),
-                ],
-              ),),
+    if (ind == 1) {
+      listItem = Card(
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        shadowColor: Colors.grey[200],
+        color: gold,
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(pos,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+              CircleAvatar(
+                foregroundColor: Colors.green,
+              ),
+              Text(
+                name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Score",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ),
+      );
+    } else if (ind == 2) {
+      listItem = Card(
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        shadowColor: Colors.grey[200],
+        color: silver,
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(pos,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+              CircleAvatar(
+                foregroundColor: Colors.green,
+              ),
+              Text(
+                name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Score",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ),
+      );
+    } else if (ind == 3) {
+      listItem = Card(
+        shadowColor: Colors.grey[200],
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        color: bronze,
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(pos,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+              CircleAvatar(
+                foregroundColor: Colors.green,
+              ),
+              Text(
+                name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Score",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ),
+      );
+    } else {
+      listItem = Card(
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        shadowColor: Colors.grey[200],
+        color: Colors.white,
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(pos,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+              CircleAvatar(
+                foregroundColor: Colors.green,
+              ),
+              Text(
+                name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Score",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ),
+      );
+    }
 
-            ]),
-          )),
+    return Stack(
+      children: [
+        Container(
+          color: Colors.grey[200],
+          child: listItem,
+        ),
+      ],
     );
   }
 }
