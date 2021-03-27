@@ -19,11 +19,10 @@ Color silver = Color(0xFFE7E7E7);
 Color bronze = Color(0xFFA45735);
 
 //Color list_item = Colors.grey[200];
-bool userRank = false;
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  State<StatefulWidget> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -94,92 +93,12 @@ class _MyAppState extends State<MyApp> {
     "2",
     "3",
     "4"
-  ];
-
-  @override
+  ];  @override
   Widget build(BuildContext context) {
-//    final profileHeight = MediaQuery.of(context).size.height * 0.25;
 
-    return Scaffold(
-      backgroundColor: Colors.grey,
-      appBar: AppBar(
-        toolbarHeight: 200,
-        // backgroundColor:unclickedColor,
-        shadowColor: Colors.black,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-                  avtar_backGround1.withOpacity(0.8),
-                  probtn,
-                  unclickedColor
-                ]),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 40, 0.0, 0.0),
-            child: Column(
-              children: [
-                Text(
-                  "LEADERBOARD",
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.grey[200],
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Icon(
-                  Icons.emoji_events_rounded,
-                  color: gold,
-                  size: 70,
-                ),
-              ],
-            ),
-          ),
-        ),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(4.0),
-          child: Container(
-            color: avtar_backGround1,
-            height: 50,
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("Postion",
-                      style: TextStyle(
-                          color: Colors.grey[200],
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                    "Profile",
-                    style:
-                    TextStyle(
-                        color: Colors.grey[200],
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Name",
-                    style:
-                    TextStyle(
-                        color: Colors.grey[200],
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Score",
-                    style: TextStyle(
-                        color: Colors.grey[200],
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
+
+    return MaterialApp(
+      home: Scaffold(      bottomNavigationBar: BottomAppBar(
         child: Container(
           color: cool,
           child: Card(
@@ -216,25 +135,101 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width - 10,
-                child: ListView.builder(
-                  itemBuilder: (BuildContext txt, int index) =>
-                      buildList(txt, index),
-                  itemCount: litems.length,
+
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              backgroundColor: probtn,
+              pinned: true,
+              snap: false,
+              floating: false,
+              expandedHeight: 200.0,
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(4.0),
+                child: Container(
+                  color: avtar_backGround1,
+                  height: 50,
+                  child: Container(
+                    child: Row(
+
+                      children: [
+                        SizedBox(width: 35),
+                        Text("Postion",
+                            style: TextStyle(
+                                color: Colors.grey[200],
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(width: 52),
+
+                        Text(
+                          "Profile",
+                          style:
+                          TextStyle(
+                              color: Colors.grey[200],
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 60),
+
+                        Text(
+                          "Name",
+                          style:
+                          TextStyle(
+                              color: Colors.grey[200],
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 60),
+
+                        Text(
+                          "Score",
+                          style: TextStyle(
+                              color: Colors.grey[200],
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),),),),
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: <Color>[leadbtn.withOpacity(0.5), cool])),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50.0),
+                        child: Text(
+                          "LEADERBOARD",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.grey[200],
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Icon(
+                        Icons.emoji_events_rounded,
+                        color: gold,
+                        size: 70,
+                      ),
+                    ],
+                  ),
                 ),
               ),
+              elevation: 9.0,
             ),
-          ),
-        ],
+SliverList(
+    delegate: SliverChildBuilderDelegate(
+  (BuildContext context,int index)=>buildList(context,index),
+      childCount: litems.length,
+))
+          ],
+        ),
       ),
     );
-  }
 
+  }
   Widget buildList(BuildContext txt, int index) {
     int ind = index + 1;
     final pos = litems[index];
@@ -385,4 +380,5 @@ class _MyAppState extends State<MyApp> {
       ],
     );
   }
+
 }
